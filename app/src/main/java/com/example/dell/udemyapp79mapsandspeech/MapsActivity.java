@@ -1,5 +1,6 @@
 package com.example.dell.udemyapp79mapsandspeech;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
@@ -8,6 +9,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -49,12 +51,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         //Camera zooming
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(sydney,5.0f);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(sydney,10.0f);
         mMap.moveCamera(cameraUpdate);
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(sydney);
-        markerOptions.title("Welcome to sydeny");
+        markerOptions.title("Welcome to sydney");
         markerOptions.snippet("Fantastic");
         mMap.addMarker(markerOptions);
+
+        CircleOptions circleOptions = new CircleOptions();
+        circleOptions.center(sydney);
+        circleOptions.radius(300);
+        circleOptions.strokeWidth(20.0f);
+        circleOptions.strokeColor(Color.CYAN);
+        mMap.addCircle(circleOptions);
     }
 }
