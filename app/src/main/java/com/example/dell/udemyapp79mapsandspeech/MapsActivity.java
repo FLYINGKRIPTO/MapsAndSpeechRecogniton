@@ -1,8 +1,9 @@
 package com.example.dell.udemyapp79mapsandspeech;
 
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -34,13 +35,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+    //onMapReadyCallback - public interface
+    //Callback interface for when the map is ready to be used
+    //Once an instance of this interface is set on a MapFragment or MapView Object
+    //the onMapReady(GoogleMap) method is triggered when the map is ready to be used
+    //and provides a non null instance of GoogleMap
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //Camera zooming
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(sydney,5.0f);
+        mMap.moveCamera(cameraUpdate);
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(sydney);
+        markerOptions.title("Welcome to sydeny");
+        markerOptions.snippet("Fantastic");
+        mMap.addMarker(markerOptions);
     }
 }
