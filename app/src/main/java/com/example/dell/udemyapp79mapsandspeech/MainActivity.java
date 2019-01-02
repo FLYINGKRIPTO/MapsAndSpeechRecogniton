@@ -11,7 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dell.udemyapp79mapsandspeech.Model.CountryDataSource;
+
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
  TextView txt_value;
  Button btn_voice_intent;
 
+ public static CountryDataSource countryDataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +33,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_voice_intent = (Button) findViewById(R.id.btnVoiceIntent);
 
         btn_voice_intent.setOnClickListener(MainActivity.this);
-
+        Hashtable<String,String> countriesAndMessages = new Hashtable<>();
+        countriesAndMessages.put("Canada","Welcome to Canada");
+        countriesAndMessages.put("France","Welcome to france .. Happy Visiting");
+        countriesAndMessages.put("India","Welcome to India... Namashkar");
+        countriesAndMessages.put("USA", "Welcome to USA... happy staying");
+        countriesAndMessages.put("Japan", "Welcome to JAPAN... happy staying");
+       //Accepts an argument of hashtable
+        countryDataSource = new CountryDataSource(countriesAndMessages);
         //we need to find if users device actually supports speech recognition
         PackageManager packageManager = this.getPackageManager();
         List<ResolveInfo> listOfInformation = packageManager.queryIntentActivities(
