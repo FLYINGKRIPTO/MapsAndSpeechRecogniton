@@ -106,6 +106,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                      txt_value.setText(userWords + " - " +confidLevel[index]);
                  }
              }
+
+
+             //Working  with map using speech recognition framework
+             String countryMatchedWithUserWord = countryDataSource.matchWithMinimumConfidenceLevelofUserWords(
+                     voiceWords,confidLevel);
+
+             Intent myMapActivity = new Intent(MainActivity.this,MapsActivity.class);
+             myMapActivity.putExtra(CountryDataSource.COUNTRY_KEY,countryMatchedWithUserWord);
+             startActivity(myMapActivity);
+
+
         }
     }
 
