@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
             //this means users device does supports speech recognition
             Toast.makeText(MainActivity.this,
                     "Your device  supports speech recognition",Toast.LENGTH_SHORT).show();
-
+             //call listenToUserVoice method
+            listenToUsersVoice();
         }
         else{
             Toast.makeText(MainActivity.this,
@@ -55,5 +57,37 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    
+    //Let's create a method in order to access speech recognition framework
+    private void listenToUsersVoice(){
+        Intent voiceIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        voiceIntent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Talk to me");
+        //user can speak in any language
+        voiceIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+         //specifying maximum results that we want to get from user's speech
+        voiceIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,10);
+        startActivityForResult(voiceIntent,SPEAK_REQUEST);
+    }
+// override this method to get data from voice intent
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==SPEAK_REQUEST && resultCode == RESULT_OK){
+           //We are going to get the words that the user has actually said
+            //and we are going to assign those words to tha arraylist here which
+            //is of type string
+
+            ArrayList<String> voiceWords = data.getStringArrayListExtra(
+                    RecognizerIntent.EXTRA_RESULTS);
+           //We can also get a decimal value from the intent
+            // this decimal value will be the preciseness of the words from the users voice
+            float[] confidLevel = data.getFloatArrayExtra(
+                    RecognizerIntent.EXTRA_CONFIDENCE_SCORES);
+            int index = 0;
+             for(String userWords : voiceWords){
+                 if(confidLevel != null && index< confidLevel.length){
+                     txt_value.setText(userWords + " - " +confidLevel[index]);
+                 }
+             }
+        }
+    }
 }
