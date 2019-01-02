@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#009900"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -19,6 +20,13 @@
             android:text="Text"
             android:textSize="22sp" />
         
-        
+        <Button
+            android:id="@+id/btnVoiceIntent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Talk to the Phone !"
+
+
+            />
     </LinearLayout>
 </RelativeLayout>

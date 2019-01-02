@@ -6,22 +6,27 @@ import android.content.pm.ResolveInfo;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
  private static  final int SPEAK_REQUEST = 10;
  TextView txt_value;
+ Button btn_voice_intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         txt_value = (TextView) findViewById(R.id.txtValue);
+        btn_voice_intent = (Button) findViewById(R.id.btnVoiceIntent);
 
+        btn_voice_intent.setOnClickListener(MainActivity.this);
 
         //we need to find if users device actually supports speech recognition
         PackageManager packageManager = this.getPackageManager();
@@ -89,5 +94,10 @@ public class MainActivity extends AppCompatActivity {
                  }
              }
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        listenToUsersVoice();
     }
 }
