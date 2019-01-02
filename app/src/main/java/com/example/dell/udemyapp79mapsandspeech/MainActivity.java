@@ -6,16 +6,21 @@ import android.content.pm.ResolveInfo;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
  private static  final int SPEAK_REQUEST = 10;
+ TextView txt_value;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        txt_value = (TextView) findViewById(R.id.txtValue);
+
 
         //we need to find if users device actually supports speech recognition
         PackageManager packageManager = this.getPackageManager();
@@ -50,4 +55,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    
 }
