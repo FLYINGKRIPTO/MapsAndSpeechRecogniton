@@ -92,7 +92,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             receivedCountry = CountryDataSource.DEFAULT_COUNTRY_NAME;
         }
         LatLng myCountryLocation = new LatLng(countryLatitude,countryLongitude);
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(myCountryLocation,17.2f);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(myCountryLocation,12.2f);
         mMap.moveCamera(cameraUpdate);
 
         MarkerOptions markerOptions = new MarkerOptions();
