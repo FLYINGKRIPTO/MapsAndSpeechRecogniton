@@ -1,5 +1,5 @@
 # MapsAndSpeechRecogniton
-Udemy Course App 79  This project navigates to maps functionality by speech recognition
+  This project navigates to maps functionality by speech recognition
 This app navigates to exact location in map on speech input by users
 
 Works only for these countries 
